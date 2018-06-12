@@ -37,17 +37,22 @@ export const Tab = TabNavigator(
         } else {
           iconName = `ios-options${focused ? '' : '-outline'}`;
         }
+
         return (
           <View>
             <IconBadge
               // Icon goes here
               MainElement={<Ionicons name={iconName} size={30} color={tintColor} />}
               // Counter element
-              BadgeElement={<Text style={styles.badgeText}>{navigation.state.BadgeCount}</Text>}
+              BadgeElement={
+                <Text style={styles.badgeText}>
+                  {navigation.state.params !== undefined && navigation.state.params.badgeCount}
+                </Text>
+              }
               // Styling for the badge
               IconBadgeStyle={styles.badgeIcon}
               // Hides badge when counter == 0
-              Hidden={navigation.state.badgeCount == 0 || !navigation.state.badgeCount}
+              Hidden={navigation.state.params === undefined || !navigation.state.params.badgeCount}
             />
           </View>
         );
@@ -77,6 +82,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#0ff'
+    backgroundColor: '#555'
   }
 });
