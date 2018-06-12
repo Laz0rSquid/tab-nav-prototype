@@ -34,10 +34,8 @@ export const Tab = TabNavigator(
         let iconName;
         if (routeName === 'Home') {
           iconName = `ios-information-circle${focused ? '' : '-outline'}`;
-          navigation.state.BadgeCount = 2;
         } else {
           iconName = `ios-options${focused ? '' : '-outline'}`;
-          navigation.state.BadgeCount = 0;
         }
         return (
           <View>
@@ -49,7 +47,7 @@ export const Tab = TabNavigator(
               // Styling for the badge
               IconBadgeStyle={styles.badgeIcon}
               // Hides badge when counter == 0
-              Hidden={navigation.state.BadgeCount == 0}
+              Hidden={navigation.state.badgeCount == 0 || !navigation.state.badgeCount}
             />
           </View>
         );
